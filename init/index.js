@@ -35,8 +35,8 @@ async function initDataFunction() {
   await Listing.deleteMany({});
   for (let obj of initData.data) {
     obj.geometry = await response(obj); // Awaiting the response properly
-    obj.owner = "67cdcde18da3ed10edde0173";
   }
+  initData.data = initData.data.map((obj) => ({...obj, owner: "67c5acdb06d782835d1058b9"}));
 
   await Listing.insertMany(initData.data);
   let listings =await Listing.find({});
